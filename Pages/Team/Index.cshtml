@@ -1,0 +1,35 @@
+﻿@page
+@model LeagueIndexTeam.IndexTeamModel
+@{
+    ViewData["Title"] = "Team List";
+}
+
+
+<div>
+    <h1>Teams</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Logo</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Stade</th>
+                <th scope="col">Ville</th>
+                <th scope="col">Lien</th>
+            </tr>
+        </thead>
+        <tbody>
+                @foreach (Team team in @Model.Teams)
+                    {
+            <tr>
+                    <td><img src='/image/nfl/logo/@(team.TeamId).png' height="30px" width="auto"></td>
+                    <td>@team.Name</td>
+                    <td>@team.Stadium</td>
+                    <td>@team.City</td>
+                    <td>@team.TeamId</td>
+
+            </tr>
+                }
+    </table>
+</div>
+
