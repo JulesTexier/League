@@ -1,5 +1,9 @@
-﻿@page
-@model League.Pages.Team.TeamModel
+﻿@page "{id}"
+
+@model LeagueTeam.TeamModel
 @{
 }
 
+<div>
+    <h1>@Model.team.Name</h1>
+</div>
