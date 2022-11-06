@@ -1,0 +1,64 @@
+﻿@page
+@model LeagueIndexTeam.IndexTeamModel
+@{
+    ViewData["Title"] = "Team List";
+}
+
+    <div class="d-flex justify-content-between">
+
+        <form>
+            <select class="form-control" style="width:200px" asp-for="SelectedTeam" onchange="this.form.submit();">
+                @foreach (Team team in @Model.Teams)
+                {
+                    <option value="@team.Name">@team.Name</option>
+                }
+            </select>
+        </form>
+    </div>
+
+@foreach(Conference conf in @Model.Conferences)
+{
+
+
+    <div style="background-color:blue; color:white">
+        <h2>@conf.Name</h2> 
+    </div>
+
+    @foreach (Division division in @Model.getConferenceDivisions(@conf.ConferenceId))
+    {
+        <h4>@division.Name<br /></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Logo</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Win</th>
+                    <th scope="col">Division</th>
+                    <th scope="col">Conférence</th>
+                    <th scope="col">Stade</th>
+                    <th scope="col">Ville</th>
+                    <th scope="col">Lien</th>
+                </tr>
+            </thead>
+            @foreach (Team team in @Model.getDivisionTeams(@division.DivisionId))
+            {
+
+                <tr class="@(team.Name == Model.SelectedTeam ? "favorite":"" )">
+                    <td><img src='/image/nfl/logo/@(team.TeamId).png' height="30px" width="auto"></td>
+                    <td>@team.Name</td>
+                    <td>@team.Win</td>
+                    <td>@division.Name</td>
+                    <td>@Model.Conferences.FirstOrDefault(c => c.ConferenceId == division.ConferenceId).Name</td>
+                    <td>@team.Stadium</td>
+
+                    <td>@team.City</td>
+                    <td><a asp-page="././Team" asp-route-id="@team.TeamId">lien</a></td>
+
+                </tr>
+            }
+        </table>
+    }
+
+ }
+
+

@@ -31,14 +31,53 @@ namespace LeagueIndexTeam
         {
             Divisions = await _context.Divisions.ToListAsync();
             Conferences = await _context.Conferences.ToListAsync();
+            Teams = await _context.Teams.ToListAsync();
 
-            var teams = from t in _context.Teams
+            var teams = from t in Teams
                         orderby t.Win descending
                         select t;
 
-            Teams = await teams.ToListAsync();
+        }
+
+        public List<Team> getDivisionTeams(string divisionId)
+        {
+            return Teams.Where(t => t.DivisionId == divisionId).OrderByDescending(t => t.Win).ToList();
 
         }
+
+
+
+        public List<Division> getConferenceDivisions(string ConferenceId)
+        {
+            return Divisions.Where(d => d.ConferenceId == ConferenceId).ToList();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }
