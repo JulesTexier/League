@@ -14,6 +14,7 @@ namespace LeagueTeam
     {
         private readonly LeagueContext _context;
         public Team team { get; set; }
+        public List<Player> Players { get; set; }
 
         public TeamModel (LeagueContext context)
         {
@@ -25,6 +26,13 @@ namespace LeagueTeam
         public async Task OnGetAsync(string id)
         {
             team = await _context.Teams.FindAsync(id);
+            Players = await _context.Players.ToListAsync();
+        }
+
+        public List<Player> getPlayersTeam(string id)
+        {
+            return Players.Where(p => p.TeamId == id).ToList();
         }
     }
+
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace League.Models
 {
@@ -24,5 +25,10 @@ namespace League.Models
     public int? Depth { get; set; }
 
     public Team Team { get; set; }
-  }
+
+        public static implicit operator Player(List<Player> v)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

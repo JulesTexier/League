@@ -2,8 +2,47 @@
 
 @model LeagueTeam.TeamModel
 @{
+    ViewData["Title"] = Model.team.Name;
+
 }
 
-<div>
-    <h1>@Model.team.Name</h1>
-</div>
+<body class="">
+    <div class="d-flex justify-content-between m-5">
+        <div>
+            <h1>@Model.team.Name</h1>
+            <h3>Name : @Model.team.Name</h3>
+            <h3>City : @Model.team.City</h3>
+            <h3>Stadium : @Model.team.Stadium ( @Model.team.Capacity seats)</h3>
+        </div>
+        <div>
+            <img class="mr-5" src="/image/nfl/logo/@(Model.team.TeamId).png" height="250px" width="auto" />
+        </div>
+    </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Number</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Height</th>
+                    <th scope="col">Weight</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">BirthDate</th>
+                    <th scope="col">Rank</th>
+                </tr>
+            </thead>
+    @foreach (Player player in @Model.getPlayersTeam(Model.team.TeamId))
+    {
+                <tr>
+                    <td>@player.Name</td>
+                    <td>@player.Number</td>
+                    <td>@player.Position</td>
+                    <td>@player.Height</td>
+                    <td>@player.Weight</td>
+                    <td>@player.Age</td>
+                    <td>@player.BirthDate</td>
+                    <td>@player.Rank</td>
+                </tr>
+    }
+        </table>
+</body>
