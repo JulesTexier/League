@@ -101,3 +101,9 @@ section.grid a
 {
   background-color: gold;
 }
+
+.nav.navbar.navbar-inverse li a
+{
+    color: white;
+}
+

@@ -19,5 +19,9 @@
 
   <ItemGroup>
     <None Remove="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" />
+    <None Remove="Pages\Players\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\Players\" />
   </ItemGroup>
 </Project>
