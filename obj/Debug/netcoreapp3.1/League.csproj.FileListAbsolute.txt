@@ -379,3 +379,5 @@
 /Users/julestexier/Google_Drive/DEV/Projects/League/League/obj/Debug/netcoreapp3.1/League.genruntimeconfig.cache
 /Users/julestexier/Google_Drive/DEV/Projects/League/League/obj/Debug/netcoreapp3.1/Razor/Pages/Players/Index.cshtml.g.cs
 /Users/julestexier/Google_Drive/DEV/Projects/League/League/obj/Debug/netcoreapp3.1/Razor/Pages/Shared/_Favicons.cshtml.g.cs
+/Users/julestexier/Google_Drive/DEV/Projects/League/League/obj/Debug/netcoreapp3.1/Razor/Pages/Shared/_footer.cshtml.g.cs
+/Users/julestexier/Google_Drive/DEV/Projects/League/League/obj/Debug/netcoreapp3.1/Razor/Pages/Players/Player.cshtml.g.cs
