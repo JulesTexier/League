@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace League.Models
 {
@@ -13,6 +14,7 @@ namespace League.Models
     public int? Height { get; set; }
     public int? Weight { get; set; }
     public int? Age { get; set; }
+    [DataType(DataType.Date)]
     public DateTime? BirthDate { get; set; }
     public string Experience { get; set; }
     public int? DraftYear { get; set; }

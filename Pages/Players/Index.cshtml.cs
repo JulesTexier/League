@@ -14,6 +14,9 @@ namespace PlayersIndex
     {
 
         public List <Player> Players { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string SearchPlayer { get; set; }
+        public Player Player { get; set; }
         private LeagueContext _context;
 
         public IndexModel(LeagueContext context)
@@ -24,6 +27,16 @@ namespace PlayersIndex
         public async Task OnGetAsync()
         {
             Players = await _context.Players.ToListAsync();
+            var players = from c in _context.Players
+                            select c;
+
+            if (!string.IsNullOrEmpty(SearchPlayer))
+            {
+
+                players = players.Where(x => x.Name.Contains(SearchPlayer));
+            }
+                Players = await players.ToListAsync();
         }
+
     }
 }
