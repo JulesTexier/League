@@ -11,6 +11,9 @@
             <a asp-page="/Players/Index">Reset</a>
         </div>
         <div>
+            @Model.favoriteString
+        </div>
+        <div>
             <form class="form-inline" id="selectplayer">
                 <div class="form-group mb-2">
                     <input type="text" asp-for="SearchPlayer" onchange="this.form.submit();" placeholder="Player's Name'">
@@ -47,7 +50,9 @@
         </thead>
         @foreach (Player player in @Model.Players)
         {
-            <tr>
+
+            <tr class="@(player.Team.Name == @Model.favoriteString ? "favorite": "" )" style="@(player.Depth == 1 ? "font-weight:bold" : "")">
+
                 <td>@player.Name</td>
                 <td>@player.Number</td>
                 <td>@player.Position</td>
@@ -58,6 +63,6 @@
                 <td>@player.Rank</td>
                 <td><a asp-page="././Player" asp-route-id="@player.PlayerId">infos</a> </td>
             </tr>
-        }
-    </table>
+            }
+        </table>
 </div>

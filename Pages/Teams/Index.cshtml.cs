@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using League.Data;
-using League.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using League.Models;
+using League.Data;
+using System.Linq;
+using Microsoft.AspNetCore.Http;
+using System;
 
 namespace LeagueIndexTeam
 {
@@ -17,9 +19,12 @@ namespace LeagueIndexTeam
         public List<Team> Teams { get; set; }
         public List<Division> Divisions { get; set; }
         public List<Conference>Conferences { get; set; }
+
         [BindProperty(SupportsGet = true)]
-        public string SelectedTeam { get; set; }
-        public Team FavoriteTeam { get; set; }
+        public string FavoriteTeam { get; set; }
+        public string test { get; set; }
+        public string SessionKeyName = "_Favorite";
+
 
 
         public IndexTeamModel(LeagueContext context)
@@ -37,6 +42,16 @@ namespace LeagueIndexTeam
                         orderby t.Win descending
                         select t;
 
+
+
+            if(FavoriteTeam != null)
+            {
+              HttpContext.Session.SetString("_Favorite", FavoriteTeam);
+            }
+            else
+            {
+                FavoriteTeam = HttpContext.Session.GetString("_Favorite");
+            }
         }
 
         public List<Team> getDivisionTeams(string divisionId)
@@ -46,38 +61,10 @@ namespace LeagueIndexTeam
         }
 
 
-
         public List<Division> getConferenceDivisions(string ConferenceId)
         {
             return Divisions.Where(d => d.ConferenceId == ConferenceId).ToList();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     }
